@@ -27,7 +27,7 @@ class CommentRepository extends ServiceEntityRepository
     public function getCommentPaginator(Conference $conference, int $offset): Paginator
     {
         $query = $this->createQueryBuilder('c')
-            ->andWhere('c.Conference = :conference')
+            ->andWhere('c.conference = :conference')
             ->setParameter('conference', $conference)
             ->orderBy('c.createdAt', 'DESC')
             ->setMaxResults(self::PAGINATOR_PER_PAGE)
