@@ -24,12 +24,16 @@
 			<p>{{ comment.text }}</p>
 		{% endfor %}
 		{% if previous >= 0 %}
-			<a href="{{ path('conference', { id: conference.id, offset: previous }) }}">Retour</a>
+			<a href="{{ path('conference', { slug: conference.slug, offset: previous }) }}">Retour</a>
 		{% endif %}
 		{% if next < comments|length %}
-			<a href="{{ path('conference', { id: conference.id, offset: next }) }}">Suivant</a>
+			<a href="{{ path('conference', { slug: conference.slug, offset: next }) }}">Suivant</a>
 		{% endif %}
 	{% else %}
 		<div>No comments have been posted yet for this conference.</div>
 	{% endif %}
-{% endblock %}
+	<h3>Ajouter un commentaire</h3>
+	<div>
+		{{form(form)}}
+		</div>
+	{% endblock %}
