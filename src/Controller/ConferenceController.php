@@ -7,6 +7,7 @@ use App\Entity\Comment;
 use App\Repository\ConferenceRepository;
 use App\Repository\CommentRepository;
 use App\Form\CommentFormType;
+use App\SpamChecker;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 
@@ -33,7 +34,7 @@ class ConferenceController extends AbstractController
         return  new Response($this->twig->render('conference/index.html.twig', []));
     }
     #[Route('/conference/{slug}', name: 'conference')]
-    public function show(Request $request, Conference $conf, CommentRepository $commentRep, ConferenceRepository $confRep, string $photoDir): Response
+    public function show(Request $request, Conference $conf, CommentRepository $commentRep, ConferenceRepository $confRep, string $photoDir, SpamChecker $spamChecker): Response
     {
         $comment = new Comment;
 
@@ -52,6 +53,16 @@ class ConferenceController extends AbstractController
             //     $comment->setPhotoFilename($filename);
             // }
             $this->em->persist($comment);
+            $context = [
+                'user_ip' => $request->getClientIp(),
+                'user_agent' => $request->headers->get('user-agent'),
+                'referrer' => $request->headers->get('referrer'),
+                'permaLink' => $request->getUri(),
+            ];
+            if (2 === $spamChecker->getSpamScore($comment, $context)) {
+                throw new \RuntimeException('Blatant spam, go away !');
+            }
+
             $this->em->flush();
             return $this->redirectToRoute('conference', ['slug' => $conf->getSlug()]);
         }
