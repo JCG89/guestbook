@@ -22,14 +22,14 @@ class CommentFormType extends AbstractType
             ])
             ->add('text')
             ->add('email', EmailType::class)
-            ->add('photoFilename', FiletYpe::class, [
-                'required' => false,
-                'mapped' => false,
-                'constraints' => [
-                    new Image(['maxSize' => '1024k'])
-                ],
-            ])
-            ->add('submit', SubmitType::class);
+
+            ->add('submit', SubmitType::class, [
+                'label' => 'Valider',
+                'attr' => [
+                    'class' => "btn btn-primary",
+
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

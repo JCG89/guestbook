@@ -4,14 +4,21 @@
 {% endblock %}
 
 {% block body %}
-	{% for  conference in conferences %}
+	<div class="container">
+		{% for  conference in conferences %}
 
-		<div class="example-wrapper">
-			<h4>Conference:{{conference}}</h4>
-			<p>
-				<a href="{{ path('conference', { slug: conference.slug }) }}">Details</a>
-			</p>
+			<div class="example-wrapper">
+				<h4 class="title-conf">Conference:
+					{{conference}}</h4>
 
-		</div>
-	{% endfor %}
+				<button class="btn btn-secondary">
+					<a href="{{ path('conference', { slug: conference.slug }) }}" class="lien">Details</a>
+				</button>
+
+
+			</div>
+		{% endfor %}
+	</div>
+
+
 {% endblock %}

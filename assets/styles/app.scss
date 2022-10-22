@@ -1,0 +1,83 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  background-color: #235a8c;
+  color: #fff;
+  margin: 0 auto;
+}
+.form {
+  width: 400px;
+  height: auto;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.title-comment {
+  text-align: center;
+}
+
+.comments {
+  width: 600px;
+  height: auto;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+.livre a {
+  text-decoration: none;
+  list-style-type: none;
+  color: #fff;
+}
+.header-ul {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+.example-wrapper {
+  width: 600px;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  text-decoration: none;
+}
+.btn {
+  position: absolute;
+  margin-left: 350px;
+}
+.btn a {
+  text-decoration: none;
+  color: #fff;
+}
+.col {
+  display: flex;
+  flex-direction: row;
+}
+.header-item {
+  list-style-type: none;
+  margin: 10px;
+  margin-left: 200px;
+}
+.header-item a {
+  text-decoration: none;
+  color: #fff;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+}
+.comment-show {
+  display: flex;
+  flex-direction: row;
+}
+.form-comment {
+  margin-left: 200px;
+}
+.title-conf {
+  width: 500px;
+  border: 1px black;
+}
+.login {
+  text-decoration: none;
+  color: #fff;
+}

@@ -5,35 +5,43 @@
 {% endblock %}
 
 {% block body %}
-	<h2>{{ conference }}
-		Conference</h2>
+	<div class="comment-show">
+		<div class="display-comment">
+			<h4 class="conference">{{ conference }}
+				Conference</h4>
 
-	{% if comments|length > 0 %}
-		{{comments|length}}
-		Commentaires
-		{% for comment in comments %}
-			{% if comment.photofilename %}
-				<img src="{{ asset('uploads/photos/' ~ comment.photofilename) }}"/>
+			{% if comments|length > 0 %}
+				{{comments|length}}
+				Commentaires
+				{% for comment in comments %}
+					{% if comment.photofilename %}
+						<img src="{{ asset('uploads/photos/' ~ comment.photofilename) }}"/>
+					{% endif %}
+
+					<h6>{{ comment.author }}</h6>
+					<small>
+						{{ comment.createdAt|format_datetime('medium', 'short') }}
+					</small>
+
+					<p>{{ comment.text }}</p>
+				{% endfor %}
+				{% if previous >= 0 %}
+					<a href="{{ path('conference', { slug: conference.slug, offset: previous }) }}">Retour</a>
+				{% endif %}
+				{% if next < comments|length %}
+					<a href="{{ path('conference', { slug: conference.slug, offset: next }) }}">Suivant</a>
+				{% endif %}
+			{% else %}
+				<div class="comments">Aucun commentaire pour l'istant !</div>
 			{% endif %}
+		</div>
+		<div class="form-comment">
+			<h4 class="title-comment">Ajouter un commentaire</h4>
+			<div class="form">
+				{{form(form)}}
+				</div>
 
-			<h4>{{ comment.author }}</h4>
-			<small>
-				{{ comment.createdAt|format_datetime('medium', 'short') }}
-			</small>
+			</div>
 
-			<p>{{ comment.text }}</p>
-		{% endfor %}
-		{% if previous >= 0 %}
-			<a href="{{ path('conference', { slug: conference.slug, offset: previous }) }}">Retour</a>
-		{% endif %}
-		{% if next < comments|length %}
-			<a href="{{ path('conference', { slug: conference.slug, offset: next }) }}">Suivant</a>
-		{% endif %}
-	{% else %}
-		<div>No comments have been posted yet for this conference.</div>
-	{% endif %}
-	<h3>Ajouter un commentaire</h3>
-	<div>
-		{{form(form)}}
 		</div>
 	{% endblock %}

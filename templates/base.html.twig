@@ -17,21 +17,38 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<header>
-		<h1>
-			<a href="{{ path('homepage') }}">Guestbook</a>
-		</h1>
-		<ul>
-			{% for conference in conferences %}
-				<li>
-					<a href="{{ path('conference', { slug: conference.slug }) }}">{{ conference }}</a>
-				</li>
-			{% endfor %}
-		</ul>
-		<hr/>
-	</header>
+	<div class="container">
+
+		<header class="header">
+			<h1 class="livre">
+				<a href="{{ path('homepage') }}">VDE</a>
+			</h1>
+			<ul class="header-ul">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col">
+							{% for conference in conferences %}
+								<li class="header-item">
+									<a href="{{ path('conference', { slug: conference.slug }) }}">{{ conference }}</a>
+								</li>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+			</ul>
+			<hr/>
+			<h6 class="login">
+				<a href="{{ path('app_login') }}">Admin</a>
+			</h6>
+		</header>
+
+	</div>
+
 
 	<body>
-		{% block body %}{% endblock %}
-	</body>
-</html>
+		<div class="container"> {% block body %}{% endblock %}
+			</div>
+
+		</body>
+	</html>
