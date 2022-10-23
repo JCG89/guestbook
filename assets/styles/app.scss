@@ -81,6 +81,29 @@ body {
   text-decoration: none;
   color: #fff;
 }
+
+.admin {
+  text-decoration: none;
+  color: #fff;
+}
+.admin:hover {
+  color: #fff;
+}
 .btn-admin {
-  width: 100px;
+  width: 400px;
+  margin-left: 3px;
+}
+.pagination {
+  text-decoration: none;
+
+  color: #fff;
+}
+.display-comment a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 10px;
+}
+#comment_form_submit {
+  width: 400px;
+  margin-left: 3px;
 }

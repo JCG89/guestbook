@@ -11,7 +11,7 @@ class ConferenceControllerTest extends WebTestCase
             $client = static::createClient();
             $client->request('GET', '/');
             $this->assertResponseIsSuccessful();
-            $this->assertSelectorTextContains('h2', 'Ajouter un commentaire');
+            $this->assertSelectorTextContains('h4', 'Ajouter un commentaire');
 
             echo $client->getResponse();
       }
